@@ -12,7 +12,7 @@ public class Problem1 {
 	 * @author Le Minh Khue
 	 * 
 	 *         Idea: We get all start and end time of all intervals and sort
-	 *         them. If start and end times are equal, start time is considered
+	 *         them in ascending order. If start and end times are equal, start time is considered
 	 *         "smaller". Then we iterate through the sorted times, if we
 	 *         encounter a start time, we increase the counter by 1, otherwise, we
 	 *         decrease the counter by 1. The maximum of the counter at all time
@@ -36,7 +36,11 @@ public class Problem1 {
 	 */
 	private int getMaxIntervalOverlapCountUsingCountingSort(
 			List<Interval> intervals) {
-		int[] countArray = new int[1441]; // There are at most 24*60+1 = 1440
+		if (intervals == null || intervals.size() == 0){
+			return 0;
+		}
+		
+		int[] countArray = new int[1441]; // There are at most 24*60+1 = 1441
 											// different times
 		TimeInteger[] times = new TimeInteger[2 * intervals.size()]; // array of
 																		// sorted

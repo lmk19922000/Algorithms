@@ -16,7 +16,11 @@ public class Problem2 {
 	 *         dynamic programming to compute the max working time possible
 	 */
 	public int getMaxWorkingTime(List<Interval> intervals) {
-		int[] countArray = new int[1441]; // There are at most 24*60+1 = 1440
+		if (intervals == null || intervals.size() == 0){
+			return 0;
+		}
+		
+		int[] countArray = new int[1441]; // There are at most 24*60+1 = 1441
 											// different times
 		times = new Interval[intervals.size()];
 
@@ -68,7 +72,8 @@ public class Problem2 {
 	 * 
 	 * @author Le Minh Khue
 	 * 
-	 *         Dynamic programming maxWorkingTime(i) is the maxWorkingTime
+	 *         Dynamic programming
+	 *         maxWorkingTime(i) is the maxWorkingTime
 	 *         consisting of intervals from 0 up to and include i
 	 * 
 	 *         maxWorkingTime(i) = interval (0) if i == 0
