@@ -43,7 +43,19 @@ public class TestPersistentQueue {
 		slowQueue7 = slowQueue6.dequeue();
 		endTime = System.nanoTime();
 		//System.out.print("Dequeue time of slow PersistentQueue: ");
-		//System.out.println(endTime - startTime);	
+		//System.out.println(endTime - startTime);
+		
+		fasterQueue6.reverse();
+		System.out.println(fasterQueue6.peek());
+		fasterQueue7 = fasterQueue6.dequeue();
+		System.out.println(fasterQueue7.peek());
+		fasterQueue7 = fasterQueue7.dequeue();
+		System.out.println(fasterQueue7.peek());
+		fasterQueue7.reverse();
+		System.out.println(fasterQueue7.peek());
+		System.out.println(fasterQueue7.size());
+		fasterQueue2.reverse();
+		System.out.println(fasterQueue2.peek());
 	}
 	
 }

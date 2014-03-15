@@ -130,4 +130,21 @@ public class PersistentQueue<E> {
 	public int size() {
 		return this.size;
 	}
+	
+	public void reverse(){
+		Node<E> prev, next, curr;
+		
+		curr = this.head.getPointingNode();
+		while (curr != null){
+			prev = curr.getPrev();
+			next = curr.getNext();
+			curr.setNext(prev);
+			curr.setPrev(next);
+			curr = next;
+		}
+		
+		curr = this.head.getPointingNode();
+		this.head.setPointingNode(this.tail.getPointingNode());
+		this.tail.setPointingNode(curr);
+	}
 }
