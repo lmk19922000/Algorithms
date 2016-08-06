@@ -1,4 +1,4 @@
-package BreakRC4;
+package breakRC4;
 import java.io.DataInputStream;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -6,14 +6,16 @@ import java.io.IOException;
 import java.math.BigInteger;
 import java.util.Vector;
 
-public class Break4 {
+public class Break2 {
 	private static Vector<Integer> tuples = new Vector<Integer>();
 	private static int N = 128;
-	private static int L = 20;
+	private static int L = 12;
 	private static int numTuples;
 	private static int[] S = new int[N];
 	private static int[] key = new int[L];
+	private static String inputFilename;
 	private static Vector<Integer> possibleKeys = new Vector<Integer>();
+	private static int timesTry = 2;
 
 	public static void main(String[] args) {
 		readData();
@@ -21,40 +23,103 @@ public class Break4 {
 		initializeKey();
 
 		boolean flag = false;
-		
+
+		for (int i = 1; i <= timesTry; i++) {
+			key[3] = findKey(3, i);
+			for (int j = 1; j <= timesTry; j++) {
+				key[4] = findKey(4, j);
+				for (int k = 1; k <= timesTry; k++) {
+					key[5] = findKey(5, k);
+					for (int l = 1; l <= timesTry; l++) {
+						key[6] = findKey(6, l);
+						for (int m = 1; m <= timesTry; m++) {
+							key[7] = findKey(7, m);
+							for (int n = 1; n <= timesTry; n++) {
+								key[8] = findKey(8, n);
+								for (int o = 1; o <= timesTry; o++) {
+									key[9] = findKey(9, o);
+									for (int p = 1; p <= timesTry; p++) {
+										key[10] = findKey(10, p);
+										for (int q = 1; q <= timesTry; q++) {
+											key[11] = findKey(11, q);
+											System.out.println("i = " + i + " "
+													+ ",j = " + j + " "
+													+ ",k = " + k + " "
+													+ ",l = " + l + " "
+													+ ",m = " + m + " "
+													+ ",n = " + n + " "
+													+ ",o = " + o + " "
+													+ ",p = " + p + " "
+													+ ",q = " + q);
+											for (int r = 0; r < 5; r++) {
+												System.out.print(key[r + 3]
+														+ " ");
+											}
+											flag = generateTestData();
+											System.out
+													.println("===========================");
+											if (flag) {
+												break;
+											}
+										}
+										if (flag) {
+											break;
+										}
+									}
+									if (flag) {
+										break;
+									}
+								}
+								if (flag) {
+									break;
+								}
+
+							}
+							if (flag) {
+								break;
+							}
+						}
+						if (flag) {
+							break;
+						}
+					}
+					if (flag) {
+						break;
+					}
+				}
+				if (flag) {
+					break;
+				}
+			}
+			if (flag) {
+				break;
+			}
+		}
+/*
 		key[3] = findKey(3, 1);
-		key[4] = findKey(4, 1);
-		key[5] = findKey(5, 1);
-		key[6] = findKey(6, 1);
+		key[4] = findKey(4, 3);
+		key[5] = findKey(5, 2);
+		key[6] = findKey(6, 2);
 		key[7] = findKey(7, 1);
-		key[8] = findKey(8, 1);
+		key[8] = findKey(8, 3);
 		key[9] = findKey(9, 1);
 		key[10] = findKey(10, 1);
 		key[11] = findKey(11, 1);
-		key[12] = findKey(12, 1);
-		key[13] = findKey(13, 1);
-		key[14] = findKey(14, 1);
-		key[15] = findKey(15, 1);
-		key[16] = findKey(16, 1);
-		key[17] = findKey(17, 1);
-		key[18] = findKey(18, 1);
-		key[19] = findKey(19, 1);
 		
 		flag = generateTestData();
+*/		
 		if (flag) {
 			System.out.println("Final key:");
 			for (int i = 0; i < L-3; i++) {
 				System.out.print(key[i + 3] + " ");
 			}
 		}
-		System.out.println();
-		System.out.println("Attack finished.");
 	}
 
 	private static boolean generateTestData() {
 		boolean ans = true;
 
-		for (int i = 0; i < 5; i++) {
+		for (int i = 0; i < 3; i++) {
 			for (int j = 0; j < 3; j++) {
 				key[j] = tuples.get(i * 4 + j);
 			}
@@ -101,6 +166,7 @@ public class Break4 {
 				} else {
 					keyByte = key[k];
 				}
+				
 				j = suffleArrayS(k, j, keyByte);
 			}
 
@@ -150,20 +216,26 @@ public class Break4 {
 			countArray[index] = 0;
 			numTry--;
 		}
-
+		
+		if (index+min<0){
+			System.out.println("Fuck" + index+ " " + min);
+		}
 		return index + min;
 	}
 
 	private static int suffleArrayS(int currentIter, int j, int key) {
 		j = (j + S[currentIter] + key) % N;
 		int temp = S[currentIter];
+		if (j<0){
+			System.out.println(currentIter+ " " + j + " " + key);
+		}
 		S[currentIter] = S[j];
 		S[j] = temp;
 		return j;
 	}
 
 	private static void readData() {
-		String inputFilename = System.getProperty("user.dir")+"\\src\\BreakRC4\\A01.data";
+		inputFilename = System.getProperty("user.dir")+"\\src\\BreakRC4\\A01.data";
 		
 		try {
 			FileInputStream fin = new FileInputStream(inputFilename);

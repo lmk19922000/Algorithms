@@ -1,8 +1,8 @@
-package Sorting;
+package sorting;
 
 import java.util.Random;
 
-public class FindKthElement {
+public class QuickSort {
 	public static void main(String[] args) {
 		int[] inputArr = new int[] { 4, 5, 7, 2, 3, 11, 5, 87, 3, 65, 9, 34,
 				43, 27, 48, 1 ,22};
@@ -12,14 +12,16 @@ public class FindKthElement {
 		}
 		System.out.println();
 		
-		int ans = findKthElement(inputArr, 0, inputArr.length - 1, 8);
+		quickSort(inputArr, 0, inputArr.length - 1);
 
-		System.out.print(ans);
+		for (int i = 0; i < inputArr.length; i++) {
+			System.out.print(inputArr[i] + " ");
+		}
 	}
 
-	private static int findKthElement(int[] inputArr, int first, int last, int k) {
+	private static void quickSort(int[] inputArr, int first, int last) {
 		if (last <= first) {
-			return inputArr[first];
+			return;
 		}
 		
 		int pivotInitialIndex, pivotCorrectIndex;
@@ -29,14 +31,8 @@ public class FindKthElement {
 				+ first;
 		
 		pivotCorrectIndex = partition(inputArr, pivotInitialIndex, first, last);
-		
-		if (pivotCorrectIndex == k-1){
-			return inputArr[pivotCorrectIndex];
-		} else if (pivotCorrectIndex > k-1){
-			return findKthElement(inputArr, first, pivotCorrectIndex - 1, k);
-		} else {
-			return findKthElement(inputArr, pivotCorrectIndex + 1, last, k);
-		}
+		quickSort(inputArr, first, pivotCorrectIndex - 1);
+		quickSort(inputArr, pivotCorrectIndex + 1, last);
 	}
 
 	private static int partition(int[] inputArr, int pivotInitialIndex,

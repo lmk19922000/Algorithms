@@ -1,4 +1,4 @@
-package DataStructures;
+package datastructures;
 
 public class ListNode<T> {
 	private T value;

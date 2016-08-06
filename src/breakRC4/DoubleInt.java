@@ -1,4 +1,4 @@
-package BreakRC4;
+package breakRC4;
 
 public class DoubleInt {
 	private int key;
