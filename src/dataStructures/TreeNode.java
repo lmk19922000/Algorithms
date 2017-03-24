@@ -16,4 +16,8 @@ public class TreeNode {
 	public TreeNode getRight(){
 		return right;
 	}
+	
+	public int getVal(){
+		return val;
+	}
 }
