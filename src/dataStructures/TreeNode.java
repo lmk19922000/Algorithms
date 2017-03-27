@@ -1,9 +1,9 @@
 package dataStructures;
 
 public class TreeNode {
-	int val;
-	TreeNode left;
-	TreeNode right;
+	public int val;
+	public TreeNode left;
+	public	TreeNode right;
 	
 	public TreeNode(int x){
 		val = x;
@@ -13,7 +13,19 @@ public class TreeNode {
 		return left;
 	}
 	
+	public void setLeft(TreeNode left){
+		this.left = left;
+	}
+	
 	public TreeNode getRight(){
 		return right;
+	}
+	
+	public void setRight(TreeNode right){
+		this.right = right;
+	}
+	
+	public int getVal(){
+		return val;
 	}
 }
