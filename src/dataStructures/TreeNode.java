@@ -13,8 +13,16 @@ public class TreeNode {
 		return left;
 	}
 	
+	public void setLeft(TreeNode left){
+		this.left = left;
+	}
+	
 	public TreeNode getRight(){
 		return right;
+	}
+	
+	public void setRight(TreeNode right){
+		this.right = right;
 	}
 	
 	public int getVal(){
